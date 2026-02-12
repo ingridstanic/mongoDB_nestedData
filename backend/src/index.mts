@@ -1,7 +1,6 @@
 import express, { json } from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-// import { toPlayRouter } from "./routes/toPlayRouter.mjs";
 import { config } from "dotenv";
 import { userRouter } from "./routes/userRouter.mjs";
 
@@ -23,8 +22,6 @@ app.use(
 );
 
 app.use(json());
-
-// app.use("/toplay", toPlayRouter);
 
 app.use("/users", userRouter);
 

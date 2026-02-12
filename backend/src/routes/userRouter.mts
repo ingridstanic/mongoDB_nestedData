@@ -6,7 +6,7 @@ export const userRouter = express.Router();
 
 userRouter.get("/", async (req, res) => {
   try {
-    const users: UserDTO = await getUsers();
+    const users: UserDTO[] = await getUsers();
     res.status(200).json(users);
   } catch (error) {
     console.error(error);
