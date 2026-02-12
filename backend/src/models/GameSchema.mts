@@ -1,9 +1,7 @@
-import { model, Schema } from "mongoose";
+import { Schema } from "mongoose";
 
-const gameSchema = new Schema({
+export const gameSchema = new Schema({
   id: { type: Number, required: true },
   title: { type: String, requried: true, minLength: 3 },
-  played: Boolean,
+  played: { type: Boolean, required: true },
 });
-
-export const GameModel = model("Game", gameSchema);
