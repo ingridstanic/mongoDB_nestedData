@@ -31,7 +31,7 @@ userRouter.post("/", async (req, res) => {
     const hasEmail = email.trim() || "No email";
 
     const newUser = await createUser(name, hasEmail);
-    res.status(200).json(newUser);
+    res.status(201).json(newUser);
   } catch (error) {
     console.error(error);
     res.status(500).json(error);
@@ -53,7 +53,7 @@ userRouter.patch("/addgame/:id", async (req, res) => {
     const success = await addUsersGame(id, title);
 
     if (success) {
-      res.status(204).send("Game added to user id: " + id);
+      res.status(201).json({ message: "Game added to user id: " + id });
     } else {
       res.status(500).json({ message: "Internal error" });
     }

@@ -7,7 +7,7 @@ import { userRouter } from "./routes/userRouter.mjs";
 config();
 
 const mongoURI = process.env.MONGO_URI || "";
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 
 if (mongoURI === "") {
   throw "MONGO_URI does not exist in .env";
