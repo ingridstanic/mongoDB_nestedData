@@ -7,6 +7,7 @@ const userSchema = new Schema({
   id: { type: Number, required: true },
   name: { type: String, required: true },
   email: { type: String, required: false },
+  password: { type: String, required: true },
   games: [gameSchema],
 });
 

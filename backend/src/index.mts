@@ -10,18 +10,19 @@ const mongoURI = process.env.MONGO_URI || "";
 const port = process.env.PORT || 3000;
 
 if (mongoURI === "") {
-  throw "MONGO_URI does not exist in .env";
+  throw Error("MONGO_URI does not exist in .env");
 }
 
 const app = express();
 
 app.use(
   cors({
+    credentials: true,
     origin: "http://localhost:5173",
   }),
 );
-
 app.use(json());
+app.use(cookieparser());
 
 app.use("/users", userRouter);
 
