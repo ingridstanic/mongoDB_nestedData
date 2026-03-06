@@ -1,6 +1,10 @@
 import express from "express";
 import type { UserDTO } from "../models/UserDTO.mjs";
-import { createUser, getUsers } from "../controllers/userController.mjs";
+import {
+  addUsersGame,
+  createUser,
+  getUsers,
+} from "../controllers/userController.mjs";
 
 export const userRouter = express.Router();
 
@@ -24,10 +28,35 @@ userRouter.post("/", async (req, res) => {
         .json({ message: "Body does not contain name or is empty" });
       return;
     }
-    const finalemail = email || "No email";
+    const hasEmail = email.trim() || "No email";
 
-    const newUser = await createUser(name, finalemail);
+    const newUser = await createUser(name, hasEmail);
     res.status(200).json(newUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json(error);
+  }
+});
+
+userRouter.patch("/addgame/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title } = req.body;
+
+    if (!title || title === "") {
+      res
+        .status(400)
+        .json({ message: "gameTitle is missing in body or is empty" });
+      return;
+    }
+
+    const success = await addUsersGame(id, title);
+
+    if (success) {
+      res.status(204).send("Game added to user id: " + id);
+    } else {
+      res.status(500).json({ message: "Internal error" });
+    }
   } catch (error) {
     console.error(error);
     res.status(500).json(error);

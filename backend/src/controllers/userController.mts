@@ -6,8 +6,9 @@ export const getUsers = async () => {
   const databaseUsers = await User.find();
 
   const dtos: UserDTO[] = databaseUsers.map((user) => {
+    console.log(user.id, typeof user.id);
     return {
-      id: +user.id,
+      id: user.id,
       name: user.name,
       games: user.games.map((game) => {
         return {
@@ -43,4 +44,23 @@ export const createUser = async (name: string, email: string) => {
       } satisfies GameDTO;
     }),
   } satisfies UserDTO;
+};
+
+export const addUsersGame = async (id: string, title: string) => {
+  const foundUser = await User.findOne({ id: +id });
+
+  if (!foundUser) return false;
+
+  const game = {
+    id: Date.now(),
+    title,
+    played: false,
+  } satisfies GameDTO;
+  // console.log(game);
+
+  foundUser.games.push(game);
+
+  await foundUser.save();
+
+  return true;
 };
