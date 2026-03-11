@@ -6,7 +6,7 @@ import type { GameDTO } from "./GameDTO.mjs";
 const userSchema = new Schema({
   id: { type: Number, required: true },
   name: { type: String, required: true },
-  email: { type: String, required: false },
+  email: { type: String, required: true },
   password: { type: String, required: true },
   games: [gameSchema],
 });

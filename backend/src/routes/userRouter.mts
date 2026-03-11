@@ -22,15 +22,17 @@ userRouter.post("/", async (req, res) => {
   try {
     const { name, email } = req.body;
 
-    if (!name || name === "") {
+    if (!name || name === "" || !email || email === "") {
       res
         .status(400)
-        .json({ message: "Body does not contain name or is empty" });
+        .json({
+          message:
+            "Body does not contain name, email or their values are empty",
+        });
       return;
     }
-    const hasEmail = email.trim() || "No email";
 
-    const newUser = await createUser(name, hasEmail);
+    const newUser = await createUser(name, email);
     res.status(201).json(newUser);
   } catch (error) {
     console.error(error);
