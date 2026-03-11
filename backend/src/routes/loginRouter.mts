@@ -1,6 +1,7 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import { convertToUserDTO } from "../models/UserSchema.mjs";
+import { login } from "../controllers/loginController.mjs";
 
 export const loginRouter = express.Router();
 
@@ -24,7 +25,7 @@ loginRouter.post("/", async (req, res) => {
     expires.setHours(expires.getHours() + 1);
 
     res.cookie("login", token, {
-      httpOnly: true,
+      httpOnly: false,
       expires,
     });
 

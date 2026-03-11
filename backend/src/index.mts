@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import { userRouter } from "./routes/userRouter.mjs";
 import cookieparser from "cookie-parser";
 import { registerRouter } from "./routes/registerRouter.mjs";
+import { loginRouter } from "./routes/loginRouter.mjs";
+import { auth } from "./middleware/auth.mjs";
 
 dotenv.config();
 

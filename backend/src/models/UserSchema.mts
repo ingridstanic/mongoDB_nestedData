@@ -19,6 +19,7 @@ export const convertToUserDTO = (DBUser: UserFromDB) => {
   return {
     id: DBUser.id,
     name: DBUser.name,
+    email: DBUser.email,
     games: DBUser.games.map((game) => {
       return {
         id: game.id,
