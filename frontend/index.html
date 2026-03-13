@@ -7,7 +7,15 @@
     <title>frontend</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <form id="loginForm">
+        <label for="email">EMAIL:</label>
+        <input name="email" type="text" required id="emailInput" />
+        <label for="password">PASSWORD:</label>
+        <input name="password" type="password" required id="passwordInput" />
+        <button>LOG IN</button>
+      </form>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

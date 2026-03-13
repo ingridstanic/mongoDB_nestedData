@@ -1,22 +1,27 @@
 import "./style.css";
 
-import { addGame, getGames } from "./services/gameService";
+import { getGames } from "./services/gameService";
 import "./style.css";
 import { createHtml } from "./utils/htmlUtils";
 
 const games = await getGames();
 createHtml(games);
 
-document.getElementById("gameForm")?.addEventListener("submit", async (e) => {
+document.getElementById("loginForm")?.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const userInput = (document.getElementById("gameText") as HTMLInputElement)
+  let userEmail = (document.getElementById("emailInput") as HTMLInputElement)
     .value;
 
-  await addGame(userInput);
+  let userPassword = (
+    document.getElementById("passwordInput") as HTMLInputElement
+  ).value;
 
-  (document.getElementById("gameText") as HTMLInputElement).value = "";
+  await login(userEmail, userPassword);
 
-  const newGames = await getGames();
-  createHtml(newGames);
+  userEmail = "";
+  userPassword = "";
+
+  const userGames = await getUserGames();
+  createHtml(userGame);
 });

@@ -1,5 +1,5 @@
-import type { Game } from "../../models/Game";
-import { deleteGame, getGames, updateGame } from "../../services/gameService";
+import type { Game } from "../models/Game";
+import { deleteGame, getGames, updateGame } from "../services/gameService";
 
 export const createHtml = (toPlay: Game[]) => {
   const gameContainer = document.getElementById("gameContainer");
